@@ -1,3 +1,4 @@
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,6 +10,7 @@ import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
