@@ -9,14 +9,18 @@ import { MovieService } from 'src/app/data/movie.service';
 export class MovieSearchComponent implements OnInit {
 
   movieService = inject(MovieService);
+  searchString: string = '';
+
   constructor() {}
-  ngOnInit(): void {
-    this.getMovies();
-  }
+  ngOnInit(): void {}
 
   getMovies() {
-    this.movieService.getMovies('Dune').subscribe(movieResults => {
+    this.movieService.getMovies(this.searchString).subscribe(movieResults => {
         console.log(movieResults);
     });
+  }
+
+  onClickSearch() {
+    this.getMovies();
   }
 }

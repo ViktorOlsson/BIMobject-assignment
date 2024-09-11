@@ -12,6 +12,6 @@ export class MovieService {
     constructor() {}
 
     getMovies (searchString: string) {
-        return this.httpClient.get<any>(`${MOVIE_URL}t=${searchString}&apiKey=${API_KEY}`);
+        return this.httpClient.get<any>(`${MOVIE_URL}s=${searchString}&apiKey=${API_KEY}`);
     }
 }
