@@ -1,3 +1,5 @@
+import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { DataModule } from './data/data.module';
 import { MovieSearchComponent } from './components/movie-search/movie-search.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { NgModule } from '@angular/core';
@@ -18,9 +20,10 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    DataModule
   ],
-  providers: [],
+  providers: [provideHttpClient()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

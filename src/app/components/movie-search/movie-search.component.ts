@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { MovieService } from 'src/app/data/movie.service';
 
 @Component({
   selector: 'app-movie-search',
@@ -7,6 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieSearchComponent implements OnInit {
 
+  movieService = inject(MovieService);
   constructor() {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getMovies();
+  }
+
+  getMovies() {
+    this.movieService.getMovies('Dune').subscribe(movieResults => {
+        console.log(movieResults);
+    });
+  }
 }
