@@ -17,3 +17,8 @@
       </button>
 </mat-card-actions>
 </mat-card>
+<br />
+@for (movie of movieList; track movie.imdbID) {
+    <app-movie-item [movie]="movie"></app-movie-item>
+  <br />
+}

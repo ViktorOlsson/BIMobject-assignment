@@ -1,3 +1,4 @@
+import { MovieItemComponent } from './components/movie-item/movie-item.component';
 import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { DataModule } from './data/data.module';
 import { MovieSearchComponent } from './components/movie-search/movie-search.component';
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     ToolbarComponent,
-    MovieSearchComponent
+    MovieSearchComponent,
+    MovieItemComponent
   ],
   imports: [
     BrowserModule,
