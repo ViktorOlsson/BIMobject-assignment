@@ -15,9 +15,7 @@ export class MovieItemComponent implements OnInit {
   route = inject(ActivatedRoute);
 
   constructor() {}
-  ngOnInit(): void {
-    console.log(this.movie);
-  }
+  ngOnInit(): void {}
 
   onClickMovie() {
     this.router.navigate(['movie-detail'], { queryParams: {id: this.movie.imdbID} });
