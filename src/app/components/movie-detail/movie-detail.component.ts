@@ -4,6 +4,11 @@ import { inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from 'src/app/data/movie.service';
 
+export interface IRatingItem {
+    Source: string,
+    Value: string
+};
+
 export interface IMovieDetails extends IMovie {
     Awards: string,
     Genre: string,
@@ -11,7 +16,8 @@ export interface IMovieDetails extends IMovie {
     imdbRating: string,
     Director: string,
     Actors: string,
-    Plot: string
+    Plot: string,
+    Ratings: IRatingItem[],
 };
 
 @Component({

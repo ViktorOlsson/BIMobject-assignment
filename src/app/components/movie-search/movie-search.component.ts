@@ -1,4 +1,6 @@
+import { DialogComponent } from './../../shared/components/error-dialog/error-dialog.component';
 import { Component, inject, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MovieService } from 'src/app/data/movie.service';
 
 export interface IMovie {
@@ -19,14 +21,21 @@ export class MovieSearchComponent implements OnInit {
   movieService = inject(MovieService);
   searchString: string = '';
   movieList: IMovie[] = [];
+  public dialog = inject(MatDialog);
 
   constructor() {}
   ngOnInit(): void {}
 
   getMovies() {
     this.movieService.getMovies(this.searchString).subscribe(movieResults => {
-        console.log(movieResults);
-        this.movieList = movieResults.Search;
+        if (movieResults.Response === 'False') {
+          console.log('Too many results to handle');
+          this.dialog.open(DialogComponent, {
+            data: movieResults.Error
+          })
+        } else {
+          this.movieList = movieResults.Search;
+        }
     });
   }
 

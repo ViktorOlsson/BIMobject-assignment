@@ -1,8 +1,18 @@
-<section class="movie-container">
+<div class="card-container">
+<mat-card appearance="outlined">
+    <mat-card-content>
     <h1>{{ movie?.Title }} ({{ movie?.Year }})</h1>
     <p>Director: {{ movie?.Director }}</p>
     <p>Actors: {{ movie?.Actors }}</p>
-
+    <br />
+    <h4>Plot</h4>
     <p>{{ movie?.Plot }}</p>
+    <h4>Awards</h4>
     <p>{{ movie?.Awards }}</p>
-</section>
+    <h4>Ratings</h4>
+    @for (movieRating of movie?.Ratings; track $index) {
+        <li>{{ movieRating.Source }}: {{ movieRating.Value }}</li>
+    }
+    </mat-card-content>
+</mat-card>
+</div>
