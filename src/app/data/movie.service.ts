@@ -14,4 +14,8 @@ export class MovieService {
     getMovies (searchString: string) {
         return this.httpClient.get<any>(`${MOVIE_URL}s=${searchString}&apiKey=${API_KEY}`);
     }
+
+    getMoiveByIMDBId(id: string) {
+        return this.httpClient.get<any>(`${MOVIE_URL}i=${id}&apiKey=${API_KEY}`);
+    }
 }
