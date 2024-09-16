@@ -2,6 +2,7 @@ import { DialogComponent } from './../../shared/components/error-dialog/error-di
 import { Component, inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MovieService } from 'src/app/data/movie.service';
+import { Utils } from 'src/app/shared/utils';
 
 export interface IMovie {
   Title: string,
@@ -27,15 +28,22 @@ export class MovieSearchComponent implements OnInit {
   ngOnInit(): void {}
 
   getMovies() {
-    this.movieService.getMovies(this.searchString).subscribe(movieResults => {
-        if (movieResults.Response === 'False') {
+    this.movieService.getMovies(this.searchString).subscribe({
+      next: (movieResults) => {
+        if (Utils.isApiResponseFalse(movieResults)) {
           this.dialog.open(DialogComponent, {
             data: movieResults.Error
-          })
+          });
         } else {
           this.movieList = movieResults.Search;
         }
-    });
+      },
+      error: (error) => {
+        this.dialog.open(DialogComponent, {
+          data: `Error with status code ${error.status}!`
+        });
+      }
+    })
   }
 
   onClickSearch() {

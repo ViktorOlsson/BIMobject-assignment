@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from 'src/app/data/movie.service';
+import { Utils } from 'src/app/shared/utils';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 
 export interface IRatingItem {
     Source: string,
@@ -32,6 +35,7 @@ export class MovieDetailComponent implements OnInit {
   route = inject(ActivatedRoute);
   movieService = inject(MovieService);
   movie: IMovieDetails | undefined;
+  public dialog = inject(MatDialog);
   constructor() {}
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -40,9 +44,17 @@ export class MovieDetailComponent implements OnInit {
   }
 
   getMovieByIMDBId(id: string) {
-    this.movieService.getMoiveByIMDBId(id).subscribe(movie => {
-        this.movie = movie;
+    this.movieService.getMoiveByIMDBId(id).subscribe({
+      next: (movie) => {
+        if (Utils.isApiResponseFalse(movie)) {
+          this.dialog.open(DialogComponent, {
+            data: movie.Error
+          });
+        } else {
+          this.movie = movie;
+        }
+      },
+      error: (error) => {}
     })
-  }
-
+    }
 }
