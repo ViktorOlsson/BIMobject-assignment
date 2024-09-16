@@ -3,17 +3,17 @@
     <h1>Please search for a movie</h1>
     <p>Please enter text in the below input field to see matching movies.</p>
     <div class="search-container">
-    <mat-form-field >
-      <mat-label>Search for movie</mat-label>
-      <input [(ngModel)]="searchString" type="search" matInput placeholder="Ex. Dune">
-    </mat-form-field>
-    <button
-      mat-raised-button
-      matTooltip="Search movie"
-      [disabled]="!searchString"
-      (click)="onClickSearch()"
-      >Search
-    </button>
+      <mat-form-field >
+        <mat-label>Search for movie</mat-label>
+        <input [(ngModel)]="searchString" type="search" matInput placeholder="Ex. Dune">
+      </mat-form-field>
+      <button
+        mat-raised-button
+        matTooltip="Search movie"
+        [disabled]="!searchString"
+        (click)="onClickSearch()"
+        >Search
+      </button>
     </div>
   </mat-card-content>
 </mat-card>
