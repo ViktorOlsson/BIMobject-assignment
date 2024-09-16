@@ -54,7 +54,11 @@ export class MovieDetailComponent implements OnInit {
           this.movie = movie;
         }
       },
-      error: (error) => {}
+      error: (error) => {
+        this.dialog.open(DialogComponent, {
+          data: `Error with status code ${error.status}!`
+        });
+      }
     })
     }
 }
