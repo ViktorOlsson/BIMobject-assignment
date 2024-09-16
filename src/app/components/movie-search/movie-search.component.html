@@ -1,22 +1,23 @@
 <mat-card appearance="outlined">
-<mat-card-header>
-    <mat-card-title>Search for a movie!</mat-card-title>
-    <mat-card-subtitle>Please enter text in the below input field to see matching movies.</mat-card-subtitle>
-</mat-card-header>
-<mat-card-actions align="start">
+  <mat-card-content>
+    <h1>Please search for a movie</h1>
+    <p>Please enter text in the below input field to see matching movies.</p>
+    <div class="search-container">
     <mat-form-field >
-        <mat-label>Search for movie</mat-label>
-        <input [(ngModel)]="searchString" type="search" matInput placeholder="Ex. Dune">
-      </mat-form-field>
-      <button
-        mat-raised-button
-        matTooltip="Search movie"
-        [disabled]="!searchString"
-        (click)="onClickSearch()"
-        >Search
-      </button>
-</mat-card-actions>
+      <mat-label>Search for movie</mat-label>
+      <input [(ngModel)]="searchString" type="search" matInput placeholder="Ex. Dune">
+    </mat-form-field>
+    <button
+      mat-raised-button
+      matTooltip="Search movie"
+      [disabled]="!searchString"
+      (click)="onClickSearch()"
+      >Search
+    </button>
+    </div>
+  </mat-card-content>
 </mat-card>
+
 <br />
 @for (movie of movieList; track movie.imdbID) {
     <app-movie-item [movie]="movie"></app-movie-item>

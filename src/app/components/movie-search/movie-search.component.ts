@@ -29,7 +29,6 @@ export class MovieSearchComponent implements OnInit {
   getMovies() {
     this.movieService.getMovies(this.searchString).subscribe(movieResults => {
         if (movieResults.Response === 'False') {
-          console.log('Too many results to handle');
           this.dialog.open(DialogComponent, {
             data: movieResults.Error
           })

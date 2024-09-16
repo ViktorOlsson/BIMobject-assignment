@@ -41,7 +41,6 @@ export class MovieDetailComponent implements OnInit {
 
   getMovieByIMDBId(id: string) {
     this.movieService.getMoiveByIMDBId(id).subscribe(movie => {
-        console.log(movie);
         this.movie = movie;
     })
   }
